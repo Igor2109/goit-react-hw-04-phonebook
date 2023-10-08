@@ -1,41 +1,43 @@
 import css from './ContactForm.module.css';
-import React, { Component } from 'react';
+import React, {useState } from 'react';
 import { nanoid } from 'nanoid';
 
-export class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
+export const ContactForm = ({handleAddContact}) => {
+  // state = {
+  //   name: '',
+  //   number: '',
+  // };
+const [name, setName] = useState('');
+const [number, setNumber] = useState('');
+
+const handleInputChange = e => {
+  if (e.target.name === 'name') {
+    setName(e.target.value);
+  } else if (e.target.name === 'number') {
+    setNumber(e.target.value);
+  }
+};
+const handleSubmit = e => {
+  e.preventDefault();
+  const userContacts = {
+    id: nanoid(),
+    name: name,
+    number: number,
   };
 
-  handleInputChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
+  handleAddContact(userContacts);
 
-  handleSubmit = e => {
-    e.preventDefault();
-    const userContacts = {
-      id: nanoid(),
-      ...this.state,
-    };
-
-    this.props.handleAddContact(userContacts);
-
-    this.setState({ name: '', number: '' });
-  };
-
-  render() {
-    const { name, number } = this.state;
+  setName('');
+  setNumber('');
+};
     return (
-      <form className={css.form} onSubmit={this.handleSubmit}>
+      <form className={css.form} onSubmit={handleSubmit}>
         <label>
           
           <input
             type="text"
             value={name}
-            onChange={this.handleInputChange}
+            onChange={handleInputChange}
             name="name"
             placeholder="Name"
             //  pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я])$"
@@ -49,7 +51,7 @@ export class ContactForm extends Component {
           <input
             type="tel"
             value={number}
-            onChange={this.handleInputChange}
+            onChange={handleInputChange}
             name="number"
             placeholder="Number"
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
@@ -62,4 +64,3 @@ export class ContactForm extends Component {
       </form>
     );
   }
-}
