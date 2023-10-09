@@ -47,9 +47,8 @@ export const App = () => {
   //   }
   // }
 useEffect(() => {
-  if (contacts.length !== contacts.length) {
     localStorage.setItem('contacts', JSON.stringify(contacts));
-  }
+  
 }, [contacts]);
 
 
