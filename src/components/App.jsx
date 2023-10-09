@@ -55,7 +55,7 @@ useEffect(() => {
 
   const handleAddContact = userContacts => {
     if (
-      this.state.contacts.some(
+      contacts.some(
         contact =>
           contact.name.toLowerCase() === userContacts.name.toLowerCase()
       )
@@ -77,11 +77,7 @@ useEffect(() => {
   };
   const handleDelete = contactId => {
     setContacts(contacts => {
-      return {
-        contacts: contacts.filter(
-          contact => contact.id !== contactId
-        ),
-      };
+      return contacts.filter(contact => contact.id !== contactId)
     });
   };
 

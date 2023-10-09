@@ -30,6 +30,8 @@ const handleSubmit = e => {
   setName('');
   setNumber('');
 };
+
+localStorage.clear();
     return (
       <form className={css.form} onSubmit={handleSubmit}>
         <label>
