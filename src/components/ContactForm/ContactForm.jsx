@@ -3,10 +3,6 @@ import React, {useState } from 'react';
 import { nanoid } from 'nanoid';
 
 export const ContactForm = ({handleAddContact}) => {
-  // state = {
-  //   name: '',
-  //   number: '',
-  // };
 const [name, setName] = useState('');
 const [number, setNumber] = useState('');
 
@@ -31,7 +27,6 @@ const handleSubmit = e => {
   setNumber('');
 };
 
-localStorage.clear();
     return (
       <form className={css.form} onSubmit={handleSubmit}>
         <label>
@@ -42,7 +37,6 @@ localStorage.clear();
             onChange={handleInputChange}
             name="name"
             placeholder="Name"
-            //  pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я])$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             className={css.formInput}
