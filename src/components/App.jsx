@@ -4,7 +4,6 @@ import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './Filter/Filter';
 import css from '../components/App.module.css';
 import { useEffect } from 'react';
-import { json } from 'body-parser';
 const init = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
   { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
@@ -26,10 +25,10 @@ export const App = () => {
     if (
       contacts.some(
         contact =>
-          contact.name.toLowerCase() === userContacts.name.toLowerCase()
+          contact.name.toLowerCase() === userContacts.name.toLowerCase() || contact.number === userContacts.number
       )
     ) {
-      alert(`${userContacts.name} is already in contacts`);
+      alert(`${userContacts.name} or ${userContacts.number} is already in contacts`);
       return;
     }
     setContacts(prevState => [userContacts, ...prevState]);

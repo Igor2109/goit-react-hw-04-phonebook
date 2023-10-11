@@ -3,15 +3,22 @@ import React, {useState } from 'react';
 import { nanoid } from 'nanoid';
 
 export const ContactForm = ({handleAddContact}) => {
-const [name, setName] = useState('');
-const [number, setNumber] = useState('');
+// const [name, setName] = useState('');
+// const [number, setNumber] = useState('');
+const [data, setData] = useState({ name: "", number: "" })
+  const {name, number} = data
 
-const handleInputChange = e => {
-  if (e.target.name === 'name') {
-    setName(e.target.value);
-  } else if (e.target.name === 'number') {
-    setNumber(e.target.value);
-  }
+
+  const handleInputChange = ({ target }) => {
+    const { name, value } = target;
+    setData(prev=>({...prev, [name]: value}))
+
+
+  // if (e.target.name === 'name') {
+  //   setName(e.target.value);
+  // } else if (e.target.name === 'number') {
+  //   setNumber(e.target.value);
+  // }
 };
 const handleSubmit = e => {
   e.preventDefault();
@@ -22,9 +29,9 @@ const handleSubmit = e => {
   };
 
   handleAddContact(userContacts);
-
-  setName('');
-  setNumber('');
+  setData({ name: '', number: '' });
+  // setName('');
+  // setNumber('');
 };
 
     return (
